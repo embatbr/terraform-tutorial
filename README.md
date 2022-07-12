@@ -19,7 +19,17 @@ Following instructions from this [tutorial](https://learn.hashicorp.com/collecti
 5. Write the configuration, as shown in the tutorial.
 
 
-## Outside Terraform
+### Step 2 - Store the state remotely
+
+Once defined the backend in *_backend.tf*, just do `terraform init` and it will
+create a .tfstate file in the designated place.
+
+There is no need to specify an access key, since Terraform is using azure cli.
+
+For more info, see [the docs](https://www.terraform.io/language/settings/backends/azurerm).
+
+
+#### Outside Terraform
 
 Some resources may need to be placed out of Terraform, such as resource groups,
 storage accounts and etc. related to store the state remotely. These are:
@@ -27,4 +37,16 @@ storage accounts and etc. related to store the state remotely. These are:
 - **rg-westus2-terraform** (resource group)
 - **terraformtutorialembatbr** (storage account)
 - **terraform-state** (blob container)
-- **azure.tfstate** (key) (TODO replace it by "(dev|qa|prod).tfstate")
+- **azure.tfstate** (key)
+
+
+### Step 3 - Use different Workspaces
+
+1. `terraform init` (do it once)
+2. `terraform workspace new <workspace_name>` (do it for each env)
+3. `terraform (plan|apply)` (do it for each env)
+
+This way environments **dev** and **qa** can be created and provisioned. For **prod**,
+ideally it should just be executed the item 2 and item 3 shouldn't be allowed.
+
+For more, read [this](https://danielwertheim.se/terraform-workspaces-and-remote-state-in-azure/).

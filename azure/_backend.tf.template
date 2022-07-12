@@ -1,0 +1,15 @@
+# Configures the Terraform Backend State File
+# TODO logout with az cli and use a SAS Token, passed by an input variable
+
+terraform {{
+  backend "azurerm" {{
+    resource_group_name  = "{deployment_env}-rg-westus2-terraform"
+    storage_account_name = "tftutoembat{deployment_env}"
+    container_name       = "{deployment_env}-terraform-state"
+    key                  = "{deployment_env}-terraform.tfstate"
+
+    subscription_id      = "{subscription_id}"
+    tenant_id            = "{tenant_id}"
+    snapshot             = true
+  }}
+}}

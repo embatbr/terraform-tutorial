@@ -6,3 +6,5 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+
+**/_backend.tf
