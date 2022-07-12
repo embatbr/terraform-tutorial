@@ -3,6 +3,6 @@ locals {
 
   tags = {
     "managed-by" = "terraform"
-    "env"        = "tutorial"
+    "env"        = var.workspace_env
   }
 }

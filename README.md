@@ -19,6 +19,12 @@ Following instructions from this [tutorial](https://learn.hashicorp.com/collecti
 5. Write the configuration, as shown in the tutorial.
 
 
-## TODO
+## Outside Terraform
 
-- Store file *terraform.tfstate* [remotely](https://learn.hashicorp.com/tutorials/terraform/cloud-migrate).
+Some resources may need to be placed out of Terraform, such as resource groups,
+storage accounts and etc. related to store the state remotely. These are:
+
+- **rg-westus2-terraform** (resource group)
+- **terraformtutorialembatbr** (storage account)
+- **terraform-state** (blob container)
+- **azure.tfstate** (key) (TODO replace it by "(dev|qa|prod).tfstate")
