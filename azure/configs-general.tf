@@ -2,5 +2,5 @@
 
 
 locals {
-  deployment_env = "${terraform.workspace}"
+  deployment_env = "${var.deployment_env}"
 }

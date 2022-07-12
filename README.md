@@ -6,7 +6,7 @@
 Following instructions from this [tutorial](https://learn.hashicorp.com/collections/terraform/azure-get-started).
 
 
-### Step 1 - Building infrastructure
+### Step 1 - Connecting to Azure
 
 1. Authenticate using `az login`. Save the output in *.credentials/az-login.output.json*;
 2. Set the account with `az account set --subscription "<SUBSCRIPTION_ID>"` with the value in field `id` from previous item's output;
@@ -34,10 +34,10 @@ For more info, see [the docs](https://www.terraform.io/language/settings/backend
 Some resources may need to be placed out of Terraform, such as resource groups,
 storage accounts and etc. related to store the state remotely. These are:
 
-- **rg-westus2-terraform** (resource group)
-- **terraformtutorialembatbr** (storage account)
-- **terraform-state** (blob container)
-- **azure.tfstate** (key)
+- **(dev|qa|prod)-rg-westus2-terraform** (resource group)
+- **tftutoembatbr(dev|qa|prod)** (storage account)
+- **terraform-state** (blob container, one for each env)
+- **(dev|qa|prod)-terraform.tfstate** (key, one for each env)
 
 
 ### Step 3 - Use different Workspaces

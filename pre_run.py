@@ -1,4 +1,4 @@
-"""Excutes all steps for a multi-environment provisioning with Terraform.
+"""Executes all steps for a multi-environment provisioning with Terraform.
 """
 
 import sys
@@ -10,12 +10,8 @@ TFVARS = {
         'tenant_id': 'ddd290f8-76db-4ddd-b7e8-f57592ba9680'
     },
     'qa': {
-        'subscription_id': '',
-        'tenant_id': ''
-    },
-    'prod': {
-        'subscription_id': '',
-        'tenant_id': ''
+        'subscription_id': '41f5ab0c-7fb5-4144-82ab-31491b47a479',
+        'tenant_id': 'ddd290f8-76db-4ddd-b7e8-f57592ba9680'
     }
 }
 
