@@ -35,8 +35,8 @@ Some resources may need to be placed out of Terraform, such as resource groups,
 storage accounts and etc. related to store the state remotely. These are:
 
 - **(dev|qa|prod)-rg-westus2-terraform** (resource group)
-- **tftutoembatbr(dev|qa|prod)** (storage account)
-- **terraform-state** (blob container, one for each env)
+- **stacctuto(dev|qa|prod)** (storage account)
+- **(dev|qa|prod)-terraform** (blob container, one for each env)
 - **(dev|qa|prod)-terraform.tfstate** (key, one for each env)
 
 

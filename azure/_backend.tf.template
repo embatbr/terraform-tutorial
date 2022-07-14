@@ -4,8 +4,8 @@
 terraform {{
   backend "azurerm" {{
     resource_group_name  = "{deployment_env}-rg-westus2-terraform"
-    storage_account_name = "tftutoembat{deployment_env}"
-    container_name       = "terraform-state"
+    storage_account_name = "stacctuto{deployment_env}"
+    container_name       = "{deployment_env}-terraform"
     key                  = "{deployment_env}-terraform.tfstate"
 
     subscription_id      = "{subscription_id}"
