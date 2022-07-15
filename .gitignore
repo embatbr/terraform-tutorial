@@ -7,4 +7,4 @@
 *.tfstate
 *.tfstate.*
 
-**/_backend.tf
+releases/

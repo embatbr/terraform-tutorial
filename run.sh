@@ -10,22 +10,24 @@ COMMANDS_NOT_ALLOWED_IN_PROD=("apply destroy")
 DEPLOYMENT_ENV="${1}"
 COMMAND="${2}" # 'plan' or 'apply'
 
+export SRC_DIRPATH="${CURRENT_PATH}/azure/src"
+export RELEASE_DIRPATH="${CURRENT_PATH}/azure/releases/${DEPLOYMENT_ENV}"
 
-python pre_run.py "${DEPLOYMENT_ENV}"
 
-cd azure
 
-if [[ ! -d ".terraform" ]] || [[ $(cat .terraform/deployment_env) != "${DEPLOYMENT_ENV}" ]]
-then
-    echo rm -Rf .terraform
-    rm -Rf .terraform # "removes" even when dir doesn't exist
+python create_release.py "${DEPLOYMENT_ENV}"
 
-    echo terraform init
-    terraform init
 
-    echo echo -n "${DEPLOYMENT_ENV}" > .terraform/deployment_env
-    echo -n "${DEPLOYMENT_ENV}" > .terraform/deployment_env
-fi
+cd ${RELEASE_DIRPATH}
+
+
+TF_DIRPATH="${RELEASE_DIRPATH}/.terraform"
+
+echo rm -Rf ${TF_DIRPATH}
+rm -Rf ${TF_DIRPATH} # "removes" even when dir doesn't exist
+
+echo terraform init
+terraform init
 
 if [[ ${DEPLOYMENT_ENV} == "prod" ]] && [[ " ${COMMANDS_NOT_ALLOWED_IN_PROD[*]} " =~ " ${COMMAND} " ]]
 then
@@ -33,6 +35,9 @@ then
     echo "exiting"
     exit
 else
-    echo terraform ${COMMAND} -var="deployment_env=${DEPLOYMENT_ENV}"
-    terraform ${COMMAND} -var="deployment_env=${DEPLOYMENT_ENV}"
+    echo terraform fmt
+    terraform fmt
+
+    echo terraform ${COMMAND}
+    terraform ${COMMAND}
 fi
