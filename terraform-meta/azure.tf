@@ -40,7 +40,7 @@ resource "azurerm_storage_account" "stacc" {
 }
 
 resource "azurerm_storage_container" "container" {
-  for_each                 = local.deployment_envs
+  for_each              = local.deployment_envs
   name                  = "${each.key}-terraform"
   storage_account_name  = azurerm_storage_account.stacc[each.key].name
   container_access_type = "private"
